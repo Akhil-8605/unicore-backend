@@ -9,8 +9,9 @@ const imagekit = new ImageKit({
   privateKey: process.env.PRIVATE_KEY,
   urlEndpoint: process.env.URL_ENDPOINT,
 });
-// allow cross-origin requests
-app.use(function (req, res, next) {
+
+// Allow cross-origin requests
+app.use((req, res, next) => {
   res.header("Access-Control-Allow-Origin", "*");
   res.header(
     "Access-Control-Allow-Headers",
@@ -19,11 +20,13 @@ app.use(function (req, res, next) {
   next();
 });
 
-app.get("/auth", function (req, res) {
-  var result = imagekit.getAuthenticationParameters();
+app.get("/auth", (req, res) => {
+  const result = imagekit.getAuthenticationParameters();
   res.send(result);
 });
 
-app.listen(4000, function () {
-  console.log("Live at Port 4000");
+// Use the environment port or default to 4000
+const PORT = process.env.PORT || 4000;
+app.listen(PORT, () => {
+  console.log(`Live at Port ${PORT}`);
 });
