@@ -26,10 +26,7 @@ app.get("/auth", (req, res) => {
 });
 
 // Use the environment port or default to 4000
-// const PORT = process.env.PORT || 4000;
-// app.listen(PORT, () => {
-//   console.log(`Live at Port ${PORT}`);
-// });
-
-// After (serverless function)
-export default app;
+const PORT = process.env.PORT || 4000;
+app.listen(PORT, () => {
+  console.log(`Live at Port ${PORT}`);
+});
